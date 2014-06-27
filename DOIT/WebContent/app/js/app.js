@@ -2,19 +2,27 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
+var myApp =angular.module('myApp', [
   'ngRoute',
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
   'ui.bootstrap',
   'myApp.controllers'
-]).
-config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $locationProvider.html5Mode(true);
-  $routeProvider.when('/view1', {templateUrl: 'partials/view1.html', controller: 'MyCtrl1'});
-}]);
+]);
 
-angular.module('myApp').constant('appSettings', {
-  AppURI: 'http://127.0.0.1:9080/'
-});
+myApp.config(['$routeProvider',
+                   function($routeProvider) {
+                     $routeProvider.
+                       when('/view1', {
+                         templateUrl: 'partials/view1.html',
+                         controller: 'MyCtrl1'
+                       }).
+                       when('/view2/:id', {
+                         templateUrl: 'partials/view2.html',
+                         controller: 'MyCtrl2'
+                       }).
+                       otherwise({
+                         redirectTo: '/view1'
+                       });
+                   }]);

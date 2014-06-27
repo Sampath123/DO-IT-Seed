@@ -1,3 +1,24 @@
-<div class="jumbotron">
-  <p ng-bind="message"></p>
+<div class="jumbotron">  
+<h3>Project-Details</h3>
+
+<table  class="table table-bordered table-condensed table-hover table-responsive, col-md-4 col-sm-6 col-lg-4" >
+<tr ng-repeat="projectDetail in projectDetails">
+<td > <h2>
+                {{projectDetail.task.taskName}}</h2>
+               <p> {{projectDetail.task.desc}}
+               </p> 
+</td>
+<td >  <a href="#">Edit </a>|<a href="#"> Complete </a>|<a href="#"> Close</a>
+    <pre><strong>
+                Created On {{projectDetail.task.createdAt}}
+                Due On {{projectDetail.task.dueDate}}
+                Closed On {{projectDetail.task.closedOn}}
+                AssignedTo {{projectDetail.task.assignTo}}
+    </strong></pre> 
+</td>
+</tr>
+
+</table>
 </div>
+
+

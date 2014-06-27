@@ -1,3 +1,25 @@
 <div class="jumbotron">
-  <p ng-bind="message"></p>
+<h3>Project List</h3>
+  <table class="table table-bordered table-condensed table-hover table-responsive">
+  <thead><tr class="success">
+  <td>Project Name</td>
+  <td>Description</td>
+  <td>Coordinators</td>
+   <td>Selector</td>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <tr  ng-repeat="project in projects">
+ <td>{{project.name}}</td>
+ <td>{{project.desc}}</td>
+ <td><span ng-repeat="coordinator in project.coordinators" >{{coordinator  | capitalize }}{{ !$last && ', ' || '.'}}</span></td>
+  <td><input id="checkSlave" type="radio" ng-click="navigateUrl(project.id)"></td>
+  </tr>
+ </tbody>
+ 
+ </table>
+  
 </div>
+
+
