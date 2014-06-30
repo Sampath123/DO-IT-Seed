@@ -41,8 +41,230 @@
 
 
 <div class="jumbotron">
-      <div class="container">
-        <h1> {{projectDetail.task.taskName}}</h1>
-        <p>{{projectDetail.task.desc}}</p>
-     </div>
+<h2>Project: {{projects.name}}</h2>
+<h3>Project-ID: {{projects.id}}</h3>
+
+<table  class="table table-bordered table-hover table-responsive, col-md-4 col-sm-6 col-lg-4" >
+<tr ng-repeat="projectDetail in projectDetails">
+<td > <h2>{{projectDetail.task.taskName}}</h2>
+        <p> {{projectDetail.task.desc}}</p> 
+</td>
+<td > <a href="#">Edit </a>|<a href="#"> Complete </a>|<a href="#"> Close</a>
+               <p> Created On {{projectDetail.task.createdAt}}</p>
+               <p> Due On {{projectDetail.task.dueDate}}</p>
+               <p> Closed On {{projectDetail.task.closedOn}}</p>
+               <p> AssignedTo {{projectDetail.task.assignTo}}</p>
+  
+</td>
+</tr>
+</table>
+  
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-1-12">
+<div class="col-sm-4" ng-repeat="pro in projectDetails">
+ <ul style="list-style:none; padding:13px">
+ <li><span ng-bind="pro.proCoordinators"></span></li>
+</ul>
+</div>         
+<div class="col-sm-11" 	ng-repeat="tasks in projectDetails">
+    <div class="col-sm-1">
+      <span class="glyphicon glyphicon-ok"></span><br>
+      <small>Pending</small>
+    </div>
+   <div class="col-sm-11">
+        <div class="col-sm-7">
+          <a href="#">
+          <span ng-bind="tasks.task.taskName"></span>
+          </a>
+          <p class="task-description" ng-bind="tasks.task.desc">
+          </p>
+        </div>
+       <div class="col-sm-4">
+            <ul class="nav nav-pills ">
+              <li><a href="#edit">Edit</a></li>
+              <li><a ng-click="markComplete(task)">Complete</a></li>
+              <li><a ng-click="closeTask(task)">Close</a></li>
+            </ul>
+            <ul style="list-style:none; padding:13px">
+              <li>
+                <strong>Assign To:</strong>
+                &nbsp;
+                <span ng-bind="tasks.task.assignTo"></span>
+              </li>
+              <li>
+                <strong>Created At:</strong>
+                &nbsp;
+                <span ng-bind="tasks.task.createdAt"></span>
+              </li>
+              <li>
+                <strong>Due Date:</strong>
+                &nbsp;
+                <span ng-bind="tasks.task.dueDate"></span>
+              </li>
+              <li>
+                <strong>Closed On:</strong>
+                &nbsp;
+                <span ng-bind="tasks.task.closedOn"></span>
+             </li>
+         </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+
+for(var i=0;i<=$scope.projectDetails.length;i++){
+	if($routeParam.projects.id===$scope.projectDetails.proID){
+		$scope.projectDetails=$scope.projectDetails;
+		
+		}
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+ <div class="modal fade" id="myModal">
+ <div class="modal-dialog">
+ <div class="modal-content">
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h3 class="modal-title">Contact Form</h3>    
+   </div>
+ <!-- <div form="form"> -->
+    <form>
+       <div class="modal-body">
+     
+           <div class="form-group">
+           <label for="text">Task</label>
+           <input type="text" class="form-control" id="taskname" required="required" placeholder="Enter Task">
+           <label class="email-required">Enter a valid email</label>
+           </div>
+              
+           <div class="form-group">
+          <label for="text">Priority</label>
+              <select class="form-control" name="priority">
+                <option value=""></option>
+                <option value="1">High</option>
+                <option value="2">Medium</option>
+                <option value="3">Low</option>
+              </select>           
+         </div>
+        
+        
+         <div class="form-group">
+          <label for="name" >Due Date</label>
+          <input type="date" class="form-control" id="dueDate" placeholder="Due Date">
+        </div>
+        
+         <div class="form-group">
+           <label for="text">Status</label>
+            <select class="form-control" name="status">
+                <option selected="selected" value="1">created</option>
+            </select>           
+         </div>
+        
+         <div class="form-group">
+          <label for="text">AssignedTo</label>
+           <select class="form-control" name="Assign">
+               <option value=""></option>
+               <option value="1">High</option>
+               <option value="2">Medium</option>
+               <option value="3">Low</option>
+           </select>           
+        </div>
+              
+             
+       <div class="form-group">
+        <label for="name" >Description</label>
+       <textarea class="form-control" id="desc" placeholder="Description"></textarea>
+       </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-2" id="sub">Submit</button>
+  
+  </div>]
+  
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="form-group">
+           <label for="text">Task</label>
+           <input type="text" class="form-control" id="taskname" ng-model="taskName" required="required" placeholder="Enter Task">
+           </div>
+              
+           <div class="form-group">
+          <label for="text">Priority</label>
+              <select class="form-control" name="priority" ng-model="pri">
+                <option value=""></option>
+                <option value="1">High</option>
+                <option value="2">Medium</option>
+                <option value="3">Low</option>
+              </select>           
+         </div>
+        
+        
+         <div class="form-group">
+          <label for="name" >Due Date</label>
+          <input type="date" class="form-control" id="dueDate" placeholder="Due Date" ng-model="dueDate">
+        </div>
+        
+         <div class="form-group">
+           <label for="text">Status</label>
+            <select class="form-control" name="status" ng-model="status">
+                <option selected="selected" value="1">created</option>
+            </select>           
+         </div>
+        
+         <div class="form-group">
+          <label for="text">AssignedTo</label>
+           <select class="form-control" name="Assign" ng-model="assign">
+               <option value=""></option>
+               <option value="1">High</option>
+               <option value="2">Medium</option>
+               <option value="3">Low</option>
+           </select>           
+        </div>
+              
+             
+       <div class="form-group">
+        <label for="name" >Description</label>
+       <textarea class="form-control" id="desc" placeholder="Description" ng-model="desc"></textarea>
+       </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+
+

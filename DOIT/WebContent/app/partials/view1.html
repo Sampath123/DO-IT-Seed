@@ -1,4 +1,53 @@
+
+<div ng-controller="MyCtrl1">
+    <script type="text/ng-template" id="createPro">
+        <div class="modal-header">
+            <h3 class="modal-title">create a task</h3>
+        </div>
+
+        <div class="modal-body">
+<form>
+           <div class="form-group">
+           <label for="text">Project</label>
+           <input type="text" class="form-control" id="taskname" ng-model="proName" required="required" placeholder="Enter Task">
+           </div>
+              
+        
+        
+         <div class="form-group">
+          <label for="text">Collaborator</label>
+           <select class="form-control" name="Assign" ng-model="collaborator">
+               <option value=""></option>
+               <option value="1">High</option>
+               <option value="2">Medium</option>
+               <option value="3">Low</option>
+           </select>           
+        </div>
+              
+             
+       <div class="form-group">
+        <label for="name" >Description</label>
+       <textarea class="form-control" id="desc" placeholder="Description" ng-model="desc"></textarea>
+       </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+    <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>
 <div class="jumbotron">
+
+
+
+
 <h3>Project List</h3>
   <table class="table table-bordered table-condensed table-hover table-responsive">
   <thead><tr class="success">
@@ -11,10 +60,10 @@
   
   <tbody>
   <tr  ng-repeat="project in projects">
- <td>{{project.name}}</td>
- <td>{{project.desc}}</td>
- <td><span ng-repeat="coordinator in project.coordinators" >{{coordinator  | capitalize }}{{ !$last && ', ' || '.'}}</span></td>
-  <td><input id="checkSlave" type="radio" ng-click="navigateUrl(project.id)"></td>
+ 	<td>{{project.name}}</td>
+ 	<td>{{project.desc}}</td>
+	<td><span ng-repeat="coordinator in project.coordinators" >{{coordinator  | capitalize }}{{ !$last && ', ' || '.'}}</span></td>
+  	<td><input id="checkSlave" type="radio" ng-click="navigateUrl(project.id)"></td>
   </tr>
  </tbody>
  
